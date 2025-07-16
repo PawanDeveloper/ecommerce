@@ -1,0 +1,452 @@
+# ============================================================
+# E-Commerce GraphQL Queries Examples
+# ============================================================
+
+# 1. Authentication Queries
+# ============================================================
+
+# Get current user information
+query GetCurrentUser {
+  me {
+    id
+    username
+    email
+    firstName
+    lastName
+    fullName
+    phone
+    isVerified
+    dateJoined
+    addresses {
+      id
+      type
+      firstName
+      lastName
+      addressLine1
+      addressLine2
+      city
+      state
+      postalCode
+      country
+      isDefault
+    }
+  }
+}
+
+# Get user addresses
+query GetUserAddresses {
+  myAddresses {
+    id
+    type
+    firstName
+    lastName
+    addressLine1
+    addressLine2
+    city
+    state
+    postalCode
+    country
+    phone
+    isDefault
+    createdAt
+  }
+}
+
+# 2. Product Catalog Queries
+# ============================================================
+
+# Get products with pagination and filters
+query GetProducts($first: Int, $after: String, $category: String, $search: String, $priceMin: Float, $priceMax: Float, $inStock: Boolean) {
+  products(first: $first, after: $after, category: $category, search: $search, priceMin: $priceMin, priceMax: $priceMax, inStock: $inStock) {
+    edges {
+      node {
+        id
+        name
+        slug
+        sku
+        description
+        price
+        compareAtPrice
+        isInStock
+        stockQuantity
+        isLowStock
+        discountPercentage
+        category {
+          id
+          name
+          slug
+        }
+        brand {
+          id
+          name
+          slug
+        }
+        images {
+          id
+          image
+          altText
+          isPrimary
+        }
+        variants {
+          id
+          name
+          sku
+          price
+          stockQuantity
+          isActive
+        }
+        createdAt
+        updatedAt
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+  }
+}
+
+# Get single product details
+query GetProduct($slug: String!) {
+  product(slug: $slug) {
+    id
+    name
+    slug
+    sku
+    description
+    price
+    compareAtPrice
+    isInStock
+    stockQuantity
+    isLowStock
+    discountPercentage
+    category {
+      id
+      name
+      slug
+    }
+    brand {
+      id
+      name
+      slug
+    }
+    images {
+      id
+      image
+      altText
+      isPrimary
+    }
+    variants {
+      id
+      name
+      sku
+      price
+      stockQuantity
+      isActive
+      attributes {
+        id
+        attribute {
+          name
+        }
+        value
+      }
+    }
+    attributes {
+      id
+      attribute {
+        name
+      }
+      value
+    }
+    createdAt
+    updatedAt
+  }
+}
+
+# Get categories
+query GetCategories {
+  categories {
+    id
+    name
+    slug
+    description
+    image
+    isParent
+    parent {
+      id
+      name
+      slug
+    }
+    children {
+      id
+      name
+      slug
+    }
+    productCount
+  }
+}
+
+# Get single category
+query GetCategory($slug: String!) {
+  category(slug: $slug) {
+    id
+    name
+    slug
+    description
+    image
+    isParent
+    parent {
+      id
+      name
+      slug
+    }
+    children {
+      id
+      name
+      slug
+    }
+    productCount
+  }
+}
+
+# Get brands
+query GetBrands {
+  brands {
+    id
+    name
+    slug
+    description
+    logo
+    productCount
+  }
+}
+
+# Get featured products
+query GetFeaturedProducts($first: Int) {
+  featuredProducts(first: $first) {
+    edges {
+      node {
+        id
+        name
+        slug
+        price
+        compareAtPrice
+        isInStock
+        discountPercentage
+        images {
+          image
+          altText
+          isPrimary
+        }
+        category {
+          name
+        }
+        brand {
+          name
+        }
+      }
+    }
+  }
+}
+
+# 3. Cart Queries
+# ============================================================
+
+# Get current user's cart
+query GetMyCart {
+  myCart {
+    id
+    totalItems
+    subtotal
+    total
+    items {
+      id
+      product {
+        id
+        name
+        slug
+        sku
+        isInStock
+        stockQuantity
+        images {
+          image
+          altText
+          isPrimary
+        }
+      }
+      variant {
+        id
+        name
+        sku
+      }
+      quantity
+      unitPrice
+      totalPrice
+      createdAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+
+# 4. Order Queries (Latest with Status & Payment Flow)
+# ============================================================
+
+# Get user's orders with status tracking
+query GetMyOrders {
+  myOrders {
+    id
+    orderNumber
+    status
+    paymentStatus
+    subtotal
+    taxAmount
+    shippingAmount
+    discountAmount
+    totalAmount
+    totalItems
+    shippingAddress
+    billingAddress
+    notes
+    trackingNumber
+    canBeCancelled
+    createdAt
+    updatedAt
+    shippedAt
+    deliveredAt
+    items {
+      id
+      productName
+      variantName
+      productSku
+      quantity
+      unitPrice
+      totalPrice
+    }
+  }
+}
+
+# Get specific order with complete status history and events
+query GetOrder($id: ID!) {
+  order(id: $id) {
+    id
+    orderNumber
+    status
+    paymentStatus
+    subtotal
+    taxAmount
+    shippingAmount
+    discountAmount
+    totalAmount
+    totalItems
+    shippingAddress
+    billingAddress
+    notes
+    trackingNumber
+    canBeCancelled
+    createdAt
+    updatedAt
+    shippedAt
+    deliveredAt
+    items {
+      id
+      product {
+        id
+        name
+        slug
+        images {
+          image
+          altText
+          isPrimary
+        }
+      }
+      variant {
+        id
+        name
+      }
+      productName
+      variantName
+      productSku
+      quantity
+      unitPrice
+      totalPrice
+    }
+    statusHistory {
+      id
+      fromStatus
+      toStatus
+      notes
+      changedBy {
+        id
+        email
+        fullName
+      }
+      createdAt
+    }
+    events {
+      id
+      eventType
+      message
+      metadata
+      createdAt
+    }
+  }
+}
+
+# Get order payment status and events
+query GetOrderPaymentStatus($id: ID!) {
+  order(id: $id) {
+    id
+    orderNumber
+    paymentStatus
+    totalAmount
+    events {
+      id
+      eventType
+      message
+      metadata
+      createdAt
+    }
+  }
+}
+
+# ============================================================
+# Example Query Variables with Pawan's Data
+# ============================================================
+
+# For GetProducts query:
+# {
+#   "first": 12,
+#   "category": "electronics",
+#   "search": "macbook",
+#   "priceMin": 50000,
+#   "priceMax": 200000,
+#   "inStock": true
+# }
+
+# For GetProduct query:
+# {
+#   "slug": "macbook-pro-13-inch"
+# }
+
+# For GetCategory query:
+# {
+#   "slug": "electronics"
+# }
+
+# For GetFeaturedProducts query:
+# {
+#   "first": 8
+# }
+
+# For GetOrder query (use actual order ID from your system):
+# {
+#   "id": "610cfd3b-0280-4205-9271-197a38282bd2"
+# }
+
+# For GetOrderPaymentStatus query:
+# {
+#   "id": "610cfd3b-0280-4205-9271-197a38282bd2"
+# } 

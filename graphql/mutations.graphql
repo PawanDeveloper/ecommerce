@@ -1,0 +1,314 @@
+# ============================================================
+# E-Commerce GraphQL Mutations Examples
+# ============================================================
+
+# 1. Authentication Mutations
+# ============================================================
+
+# Create new user account
+mutation CreateUser($username: String!, $email: String!, $password: String!, $firstName: String!, $lastName: String!, $phone: String) {
+  createUser(username: $username, email: $email, password: $password, firstName: $firstName, lastName: $lastName, phone: $phone) {
+    user {
+      id
+      username
+      email
+      firstName
+      lastName
+      fullName
+      phone
+      isVerified
+      dateJoined
+    }
+    success
+    errors
+  }
+}
+
+# Login / Get JWT token
+mutation LoginUser($email: String!, $password: String!) {
+  tokenAuth(email: $email, password: $password) {
+    token
+    refreshToken
+    user {
+      id
+      username
+      email
+      firstName
+      lastName
+      fullName
+      phone
+      isVerified
+    }
+  }
+}
+
+# Refresh JWT token
+mutation RefreshToken($refreshToken: String!) {
+  refreshToken(refreshToken: $refreshToken) {
+    token
+    refreshToken
+  }
+}
+
+# Verify JWT token
+mutation VerifyToken($token: String!) {
+  verifyToken(token: $token) {
+    payload
+  }
+}
+
+# Update user profile
+mutation UpdateProfile($firstName: String, $lastName: String, $phone: String, $dateOfBirth: Date) {
+  updateProfile(firstName: $firstName, lastName: $lastName, phone: $phone, dateOfBirth: $dateOfBirth) {
+    user {
+      id
+      firstName
+      lastName
+      fullName
+      phone
+      dateOfBirth
+    }
+    success
+    errors
+  }
+}
+
+# Create user address
+mutation CreateAddress($type: String!, $firstName: String!, $lastName: String!, $company: String, $addressLine1: String!, $addressLine2: String, $city: String!, $state: String!, $postalCode: String!, $country: String!, $phone: String, $isDefault: Boolean) {
+  createAddress(type: $type, firstName: $firstName, lastName: $lastName, company: $company, addressLine1: $addressLine1, addressLine2: $addressLine2, city: $city, state: $state, postalCode: $postalCode, country: $country, phone: $phone, isDefault: $isDefault) {
+    address {
+      id
+      type
+      firstName
+      lastName
+      company
+      addressLine1
+      addressLine2
+      city
+      state
+      postalCode
+      country
+      phone
+      isDefault
+    }
+    success
+    errors
+  }
+}
+
+# 2. Cart Mutations
+# ============================================================
+
+# Add item to cart
+mutation AddToCart($productId: ID!, $variantId: ID, $quantity: Int!) {
+  addToCart(productId: $productId, variantId: $variantId, quantity: $quantity) {
+    cart {
+      id
+      totalItems
+      subtotal
+      total
+      items {
+        id
+        product {
+          name
+          price
+        }
+        variant {
+          name
+        }
+        quantity
+        unitPrice
+        totalPrice
+      }
+    }
+    success
+    errors
+  }
+}
+
+# Update cart item quantity
+mutation UpdateCartItem($productId: ID!, $variantId: ID, $quantity: Int!) {
+  updateCartItem(productId: $productId, variantId: $variantId, quantity: $quantity) {
+    cart {
+      id
+      totalItems
+      subtotal
+      total
+      items {
+        id
+        product {
+          name
+          price
+        }
+        quantity
+        unitPrice
+        totalPrice
+      }
+    }
+    success- Updated with Latest Features
+    errors
+  }
+}
+
+# Remove item from cart
+mutation RemoveFromCart($productId: ID!, $variantId: ID) {
+  removeFromCart(productId: $productId, variantId: $variantId) {
+    cart {
+      id
+      totalItems
+      subtotal
+      total
+    }
+    success
+    errors
+  }
+}
+
+# Clear entire cart
+mutation ClearCart {
+  clearCart {
+    cart {
+      id
+      totalItems
+      subtotal
+      total
+    }
+    success
+    errors
+  }
+}
+
+# 3. Order Mutations (Latest with Status & Payment Flow)
+# ============================================================
+
+# Checkout and create order with async processing
+mutation Checkout($customer: CheckoutCustomerInput!) {
+  checkout(customer: $customer) {
+    order {
+      id
+      orderNumber
+      status
+      paymentStatus
+      totalAmount
+      shippingAddress
+      billingAddress
+      notes
+      canBeCancelled
+      createdAt
+    }
+    success
+    errors
+  }
+}
+
+# Cancel order (changes status to 'cancelled')
+mutation CancelOrder($orderId: ID!) {
+  cancelOrder(orderId: $orderId) {
+    order {
+      id
+      orderNumber
+      status
+      paymentStatus
+      canBeCancelled
+      updatedAt
+    }
+    success
+    errors
+  }
+}
+
+# ============================================================
+# Example Mutation Variables with Pawan's Data
+# ============================================================
+
+# For CreateUser mutation:
+# {
+#   "username": "pawan_kumar",
+#   "email": "pawan@gmail.com",
+#   "password": "SecurePassword123!",
+#   "firstName": "Pawan",
+#   "lastName": "Kumar",
+#   "phone": "+91-9876543210"
+# }
+
+# For LoginUser mutation:
+# {
+#   "email": "pawan@gmail.com",
+#   "password": "SecurePassword123!"
+# }
+
+# For UpdateProfile mutation:
+# {
+#   "firstName": "Pawan",
+#   "lastName": "Kumar",
+#   "phone": "+91-9876543210",
+#   "dateOfBirth": "1990-01-15"
+# }
+
+# For CreateAddress mutation:
+# {
+#   "type": "shipping",
+#   "firstName": "Pawan",
+#   "lastName": "Kumar",
+#   "company": "Tech Solutions",
+#   "addressLine1": "123 MG Road",
+#   "addressLine2": "Near Metro Station",
+#   "city": "Mumbai",
+#   "state": "Maharashtra",
+#   "postalCode": "400001",
+#   "country": "India",
+#   "phone": "+91-9876543210",
+#   "isDefault": true
+# }
+
+# For AddToCart mutation (use actual product ID from your system):
+# {
+#   "productId": "your-product-id-here",
+#   "variantId": "your-variant-id-here",
+#   "quantity": 2
+# }
+
+# For UpdateCartItem mutation:
+# {
+#   "productId": "your-product-id-here",
+#   "variantId": "your-variant-id-here",
+#   "quantity": 5
+# }
+
+# For RemoveFromCart mutation:
+# {
+#   "productId": "your-product-id-here",
+#   "variantId": "your-variant-id-here"
+# }
+
+# For Checkout mutation:
+# {
+#   "customer": {
+#     "shippingFirstName": "Pawan",
+#     "shippingLastName": "Kumar",
+#     "shippingCompany": "Tech Solutions",
+#     "shippingAddressLine1": "123 MG Road",
+#     "shippingAddressLine2": "Near Metro Station",
+#     "shippingCity": "Mumbai",
+#     "shippingState": "Maharashtra",
+#     "shippingPostalCode": "400001",
+#     "shippingCountry": "India",
+#     "shippingPhone": "+91-9876543210",
+#     "billingFirstName": "Pawan",
+#     "billingLastName": "Kumar",
+#     "billingCompany": "Tech Solutions",
+#     "billingAddressLine1": "123 MG Road",
+#     "billingAddressLine2": "Near Metro Station",
+#     "billingCity": "Mumbai",
+#     "billingState": "Maharashtra",
+#     "billingPostalCode": "400001",
+#     "billingCountry": "India",
+#     "billingPhone": "+91-9876543210",
+#     "notes": "Please deliver between 10 AM to 6 PM"
+#   }
+# }
+
+# For CancelOrder mutation (use actual order ID from your system):
+# {
+#   "orderId": "610cfd3b-0280-4205-9271-197a38282bd2"
+# } 

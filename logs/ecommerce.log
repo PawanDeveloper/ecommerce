@@ -1,0 +1,58 @@
+
+
+
+INFO 2025-07-16 10:42:32,222 tasks 163729 138203009310720 Starting checkout process for user 3, cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:42:32,226 tasks 163729 138203009310720 Checkout chain started with task ID: be88995a-9406-41dd-ae6c-c01fa350b94b
+INFO 2025-07-16 10:42:32,230 tasks 163730 138203009310720 Starting inventory validation for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:42:32,236 tasks 163730 138203009310720 Inventory validation successful for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:42:32,240 tasks 163729 138203009310720 Creating order from cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+ERROR 2025-07-16 10:42:32,245 tasks 163729 138203009310720 Order creation failed for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd: NOT NULL constraint failed: orders.user_id
+INFO 2025-07-16 10:43:32,248 tasks 163729 138203009310720 Creating order from cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+ERROR 2025-07-16 10:43:32,251 tasks 163729 138203009310720 Order creation failed for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd: NOT NULL constraint failed: orders.user_id
+INFO 2025-07-16 10:45:02,100 tasks 163729 138203009310720 Starting checkout process for user 3, cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:45:02,101 tasks 163729 138203009310720 Checkout chain started with task ID: 0c1a0395-e5e9-4d54-bc21-ef1e57fa29d8
+INFO 2025-07-16 10:45:02,102 tasks 163729 138203009310720 Starting inventory validation for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:45:02,104 tasks 163729 138203009310720 Inventory validation successful for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:45:02,106 tasks 163729 138203009310720 Creating order from cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+ERROR 2025-07-16 10:45:02,108 tasks 163729 138203009310720 Order creation failed for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd: NOT NULL constraint failed: orders.user_id
+INFO 2025-07-16 10:45:32,254 tasks 163729 138203009310720 Creating order from cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+ERROR 2025-07-16 10:45:32,257 tasks 163729 138203009310720 Order creation failed for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd: NOT NULL constraint failed: orders.user_id
+INFO 2025-07-16 10:46:02,111 tasks 163729 138203009310720 Creating order from cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+ERROR 2025-07-16 10:46:02,117 tasks 163729 138203009310720 Order creation failed for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd: NOT NULL constraint failed: orders.user_id
+INFO 2025-07-16 10:46:22,444 tasks 163729 138203009310720 Starting checkout process for user 3, cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:46:22,446 tasks 163729 138203009310720 Checkout chain started with task ID: 5f4e247a-0906-48c7-8f49-a3df027ce03c
+INFO 2025-07-16 10:46:22,446 tasks 163729 138203009310720 Starting inventory validation for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:46:22,448 tasks 163729 138203009310720 Inventory validation successful for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:46:22,450 tasks 163729 138203009310720 Creating order from cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+ERROR 2025-07-16 10:46:22,451 tasks 163729 138203009310720 Order creation failed for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd: NOT NULL constraint failed: orders.user_id
+INFO 2025-07-16 10:47:22,454 tasks 163729 138203009310720 Creating order from cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+ERROR 2025-07-16 10:47:22,457 tasks 163729 138203009310720 Order creation failed for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd: NOT NULL constraint failed: orders.user_id
+INFO 2025-07-16 10:48:02,120 tasks 163729 138203009310720 Creating order from cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+ERROR 2025-07-16 10:48:02,125 tasks 163729 138203009310720 Order creation failed for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd: NOT NULL constraint failed: orders.user_id
+INFO 2025-07-16 10:55:35,544 tasks 173366 128291277485248 Starting checkout process for user 3, cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:55:35,548 tasks 173366 128291277485248 Checkout chain started with task ID: e0bbf912-ce71-4aab-b153-5e512a8d5b08
+INFO 2025-07-16 10:55:35,549 tasks 173367 128291277485248 Starting inventory validation for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:55:35,558 tasks 173367 128291277485248 Inventory validation successful for cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:55:35,563 tasks 173366 128291277485248 Creating order from cart a03cf0cf-6067-4435-bda3-f42c1227b8dd
+INFO 2025-07-16 10:55:35,573 tasks 173366 128291277485248 Order ORD-663335264 created successfully
+INFO 2025-07-16 10:55:35,577 tasks 173367 128291277485248 Deducting stock for order 610cfd3b-0280-4205-9271-197a38282bd2
+INFO 2025-07-16 10:55:35,584 tasks 173367 128291277485248 Stock deducted successfully for order ORD-663335264
+INFO 2025-07-16 10:55:35,589 tasks 173366 128291277485248 Sending confirmation for order ORD-663335264
+INFO 2025-07-16 10:55:35,593 tasks 173366 128291277485248 
+        ========== ORDER CONFIRMATION ==========
+        Order Number: ORD-663335264
+        Customer: Updated Name (test@example.com)
+        Total Items: 10
+        Total Amount: $29990.00
+        
+        Shipping Address:
+        123 Main St
+New York, NY 10001
+USA
+        
+        Order Items:
+        
+INFO 2025-07-16 10:55:35,594 tasks 173366 128291277485248   - MacBook Pro 16-inch x10 = $29990.00
+INFO 2025-07-16 10:55:35,594 tasks 173366 128291277485248 ========== END CONFIRMATION ==========
+INFO 2025-07-16 10:55:35,596 tasks 173366 128291277485248 Cart a03cf0cf-6067-4435-bda3-f42c1227b8dd cleared after successful order
+INFO 2025-07-16 10:55:35,598 tasks 173366 128291277485248 Order confirmation completed for order ORD-663335264

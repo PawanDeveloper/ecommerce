@@ -1,0 +1,114 @@
+# ============================================================
+# E-Commerce GraphQL Subscriptions Examples
+# ============================================================
+
+# 1. Order Status Subscriptions
+# ============================================================
+
+# Subscribe to specific order status updates
+subscription OrderStatusUpdated($orderId: ID!) {
+  orderStatusUpdated(orderId: $orderId) {
+    id
+    orderNumber
+    status
+    paymentStatus
+    totalAmount
+    canBeCancelled
+    updatedAt
+    statusHistory {
+      id
+      fromStatus
+      toStatus
+      notes
+      createdAt
+    }
+  }
+}
+
+# Subscribe to order events for a specific order
+subscription OrderEvent($orderId: ID!) {
+  orderEvent(orderId: $orderId) {
+    id
+    order {
+      id
+      orderNumber
+      status
+      paymentStatus
+    }
+    eventType
+    message
+    metadata
+    createdAt
+  }
+}
+
+# Subscribe to all user's order updates
+subscription UserOrderUpdate {
+  userOrderUpdate {
+    id
+    orderNumber
+    status
+    paymentStatus
+    totalAmount
+    canBeCancelled
+    updatedAt
+  }
+}
+
+# 2. Payment Status Subscriptions
+# ============================================================
+
+# Subscribe to payment status changes for specific order
+subscription PaymentStatusUpdated($orderId: ID!) {
+  paymentStatusUpdated(orderId: $orderId) {
+    id
+    orderNumber
+    paymentStatus
+    totalAmount
+    events {
+      eventType
+      message
+      createdAt
+    }
+  }
+}
+
+# Subscribe to payment events
+subscription PaymentEvent($orderId: ID!) {
+  paymentEvent(orderId: $orderId) {
+    id
+    order {
+      id
+      orderNumber
+      paymentStatus
+    }
+    eventType
+    message
+    metadata
+    createdAt
+  }
+}
+
+# ============================================================
+# Example Subscription Variables with Pawan's Data
+# ============================================================
+
+# For OrderStatusUpdated subscription (use actual order ID):
+# {
+#   "orderId": "610cfd3b-0280-4205-9271-197a38282bd2"
+# }
+
+# For OrderEvent subscription (use actual order ID):
+# {
+#   "orderId": "610cfd3b-0280-4205-9271-197a38282bd2"
+# }
+
+# For PaymentStatusUpdated subscription (use actual order ID):
+# {
+#   "orderId": "610cfd3b-0280-4205-9271-197a38282bd2"
+# }
+
+# For PaymentEvent subscription (use actual order ID):
+# {
+#   "orderId": "610cfd3b-0280-4205-9271-197a38282bd2"
+# }
